@@ -39,31 +39,56 @@ Create a `.env` file based on `.env.example`:
 ```env
 VITE_SUPABASE_URL=https://your-project-id.supabase.co
 VITE_SUPABASE_ANON_KEY=your-anon-key-here
-VITE_API_URL=http://localhost:3001
+VITE_API_URL=http://localhost:7001
 VITE_API_TOKEN=your-static-api-token
 ```
 
 ## What technologies are used for this project?
 
-- **Vite** - Build tool and dev server
+- **Vite** - Build tool and dev server (port 8080)
 - **TypeScript** - Type-safe JavaScript
-- **React** - UI framework
+- **React** 18 - UI framework
 - **React Router** - Client-side routing
-- **TanStack Query** - Server state management
-- **shadcn/ui** - UI components
+- **TanStack Query** - Server state management & caching
+- **shadcn/ui** - UI components (Radix UI based)
 - **Tailwind CSS** - Styling
 - **Supabase** - Backend-as-a-Service (auth, database, storage)
 - **Zod** - Schema validation
 - **React Hook Form** - Form handling
+- **Framer Motion** - Animations
+- **Recharts** - Charts for admin dashboard
+- **date-fns** - Date utilities
+- **lucide-react** - Icons
+- **Vitest** - Testing framework
 
 ## Features
 
+### User Features
 - **User Authentication** - Sign up, sign in, and sign out via Supabase Auth
+- **Book Discovery** - Browse books by category with filtering
 - **Book Upload** - Upload PDF/EPUB books for processing
-- **Character Extraction** - AI-powered character extraction from uploaded books
-- **Chat with Characters** - Interactive conversations with book characters
-- **User Library** - Manage your collection of books
-- **Role-based Access** - Admin and moderator functionality
+- **Character Chat** - Interactive conversations with AI-powered book characters
+- **User Library** - Personal book collection with reading progress
+- **Wishlist** - Save books for later
+- **Book Reviews & Ratings** - Rate and review books
+- **Book Comments** - Discussion on books
+- **User Profiles** - Public/private profile customization
+
+### Admin & Moderation
+- **Admin Dashboard** - Overview with analytics charts
+- **Book Management** - Approve/reject books, view processing status
+- **Category Management** - Organize books by category
+- **User Management** - View and manage users
+- **Content Moderation** - Moderate reviews and comments
+- **Report Handling** - Process user reports
+- **App Settings** - Configure application settings
+- **Notification Management** - Send system notifications
+- **Audit Logs** - Track administrative actions
+
+### Role-based Access
+- **User** - Standard registered user
+- **Moderator** - Content moderation privileges
+- **Admin** - Full administrative access
 
 ## Available Scripts
 
@@ -94,16 +119,70 @@ npm run preview
 
 ```
 src/
-├── components/       # Reusable UI components
-│   ├── ui/          # shadcn/ui components
-│   ├── auth/        # Authentication components
-│   └── layout/      # Layout components
-├── contexts/        # React contexts (Auth, etc.)
-├── hooks/           # Custom React hooks
-├── lib/             # Utility functions and API client
-├── pages/           # Page components
-│   ├── admin/       # Admin panel pages
-│   └── settings/    # Settings sub-pages
-├── types/           # TypeScript type definitions
-└── data/            # Mock data (to be removed)
+├── components/              # Reusable UI components
+│   ├── ui/                 # shadcn/ui base components
+│   ├── auth/               # Authentication components (ProtectedRoute, RoleRoute)
+│   └── layout/             # Layout components (AppLayout, Sidebar, Header)
+├── contexts/               # React contexts
+│   └── AuthContext.tsx     # Authentication state management
+├── hooks/                  # Custom React hooks
+│   ├── useAuth*            # Auth-related hooks
+│   ├── useBooks*           # Book management hooks
+│   ├── useChat*            # Chat functionality hooks
+│   ├── useAdmin*           # Admin functionality hooks
+│   └── use*.ts(x)          # Various utility hooks
+├── lib/                    # Core libraries
+│   ├── api.ts              # API client configuration
+│   ├── supabase.ts         # Supabase client setup
+│   └── utils.ts            # Utility functions
+├── pages/                  # Page components
+│   ├── admin/             # Admin panel pages
+│   │   ├── AdminOverview.tsx
+│   │   ├── AdminBooks.tsx
+│   │   ├── AdminCategories.tsx
+│   │   ├── AdminUsers.tsx
+│   │   ├── AdminComments.tsx
+│   │   ├── AdminReports.tsx
+│   │   ├── AdminSettings.tsx
+│   │   └── AdminNotifications.tsx
+│   ├── settings/          # Settings sub-pages
+│   │   ├── ProfileSettings.tsx
+│   │   ├── NotificationSettings.tsx
+│   │   ├── AppearanceSettings.tsx
+│   │   ├── PrivacySettings.tsx
+│   │   └── HelpSupportSettings.tsx
+│   └── *.tsx              # Main page components
+├── test/                   # Test setup and examples
+│   ├── setup.ts
+│   └── example.test.ts
+├── types/                  # TypeScript type definitions
+│   ├── database.ts         # Supabase database types
+│   └── api.ts              # API response types
+└── main.tsx                # Application entry point
 ```
+
+## Database Schema
+
+### Core Tables
+- **profiles** - User profiles with display name, avatar, bio
+- **categories** - Book categories with slug, description, cover image
+- **books** - Book metadata, processing status, ratings, stats
+- **book_files** - File storage for PDF/EPUB/MOBI formats
+- **characters** - Extracted characters with AI prompts
+- **chat_sessions** - User-character chat sessions
+- **messages** - Chat messages with role (user/assistant/character)
+
+### User Data Tables
+- **user_library** - User's book collection with reading progress
+- **user_wishlist** - User's saved books
+- **book_purchases** - Purchase history
+- **book_ratings** - User ratings (1-5)
+- **book_reviews** - User reviews with spoiler flags
+- **book_comments** - Threaded comments on books
+- **notifications** - User notifications
+
+### Moderation Tables
+- **reports** - User-submitted reports
+- **user_roles** - Role assignments (user/moderator/admin)
+- **audit_logs** - Administrative action logs
+- **app_settings** - Application configuration
