@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 30 50% 98%;
+    --foreground: 240 10% 20%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 20%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 20%;
+
+    --primary: 260 40% 65%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 340 30% 90%;
+    --secondary-foreground: 340 30% 35%;
+
+    --muted: 240 20% 96%;
+    --muted-foreground: 240 10% 50%;
+
+    --accent: 150 25% 88%;
+    --accent-foreground: 150 30% 30%;
+
+    --destructive: 0 65% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 260 20% 90%;
+    --input: 260 15% 92%;
+    --ring: 260 40% 65%;
+
+    --radius: 1rem;
+
+    /* Custom Falsafa tokens */
+    --lavender: 260 40% 65%;
+    --lavender-light: 260 40% 92%;
+    --blush: 340 35% 80%;
+    --blush-light: 340 35% 94%;
+    --cream: 40 40% 95%;
+    --sage: 150 25% 70%;
+    --sage-light: 150 25% 92%;
+    --warm-white: 30 50% 98%;
+    --slate-text: 240 10% 40%;
+
+    --sidebar-background: 260 30% 97%;
+    --sidebar-foreground: 240 10% 30%;
+    --sidebar-primary: 260 40% 60%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 260 30% 93%;
+    --sidebar-accent-foreground: 260 40% 35%;
+    --sidebar-border: 260 20% 90%;
+    --sidebar-ring: 260 40% 65%;
+
+    --chat-user: 260 35% 92%;
+    --chat-ai: 340 30% 95%;
+  }
+
+  .dark {
+    --background: 240 15% 10%;
+    --foreground: 30 20% 90%;
+
+    --card: 240 15% 13%;
+    --card-foreground: 30 20% 90%;
+
+    --popover: 240 15% 13%;
+    --popover-foreground: 30 20% 90%;
+
+    --primary: 260 45% 70%;
+    --primary-foreground: 240 15% 10%;
+
+    --secondary: 340 25% 25%;
+    --secondary-foreground: 340 25% 85%;
+
+    --muted: 240 15% 18%;
+    --muted-foreground: 240 10% 60%;
+
+    --accent: 150 20% 22%;
+    --accent-foreground: 150 25% 80%;
+
+    --destructive: 0 60% 45%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 240 15% 20%;
+    --input: 240 15% 20%;
+    --ring: 260 45% 70%;
+
+    --lavender: 260 45% 70%;
+    --lavender-light: 260 30% 20%;
+    --blush: 340 30% 45%;
+    --blush-light: 340 25% 18%;
+    --cream: 40 20% 15%;
+    --sage: 150 20% 40%;
+    --sage-light: 150 15% 18%;
+    --warm-white: 240 15% 10%;
+    --slate-text: 240 10% 65%;
+
+    --sidebar-background: 240 15% 8%;
+    --sidebar-foreground: 30 20% 85%;
+    --sidebar-primary: 260 45% 65%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 15% 15%;
+    --sidebar-accent-foreground: 260 35% 80%;
+    --sidebar-border: 240 15% 18%;
+    --sidebar-ring: 260 45% 70%;
+
+    --chat-user: 260 30% 20%;
+    --chat-ai: 340 20% 18%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
+  }
+}
